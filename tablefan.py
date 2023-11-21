@@ -12,6 +12,35 @@
 
 class TableFan:
     speed=0 #0 is off, 10 is max
-    ossilation=False
-    orientation=0 # degrees, can be +-90
+    oscillating=False
+    def __init__(self) -> None:
+        self.speed=0
+        self.oscillating=False
+    def stop(self):
+        self.speed=0
+    def getSpeed(self):
+            return self.speed
+    def setSpeed(self,speed):
+        if speed>=0 and speed<=10:
+            self.speed=speed
+        else:
+            print("invalid speed")
+    def setOscillating(self,oscillate):
+        self.oscillating=oscillate
+    def printStatus(self):
+        if self.speed==0:
+            print("Fan OFF")
+        else:
+            print("Fan Speed:",self.speed," Ossilating:",self.oscillating)
     
+
+
+if __name__=="__main__":
+    fan=TableFan()
+    fan.printStatus()
+    fan.setSpeed(5)
+    fan.printStatus()
+    fan.setOscillating(True)
+    fan.printStatus()
+    fan.stop()
+    fan.printStatus()

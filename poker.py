@@ -64,28 +64,29 @@ class PlayingCard:
 
 
 
+if __name__=="__main__":
+    deck=[]
+    for r in range(1,14):
+        for s in ['c','h','d','s']:
+            card=PlayingCard(r,s)
+            deck.append(card)
+    print("Deck Built, size:",len(deck))
+    #good card players know 7 shuffles are required for a deck to be 'random'
+    for r in range(7):
+        random.shuffle(deck)
 
-deck=[]
-for r in range(1,13):
-    for s in ['c','h','d','s']:
-        card=PlayingCard(r,s)
-        deck.append(card)
-#good card players know 7 shuffles are required for a deck to be 'random'
-for r in range(7):
-    random.shuffle(deck)
+    print("Deck is shuffled!")
 
-print("Deck is built and shuffled!")
+    howmany=input("How many cards would you like?(non number to exit)\nEnter Number:")
+    try:
+        howmanyi=int(howmany)
+    except ValueError:
+        exit(0)
 
-howmany=input("How many cards would you like?(non number to exit)\nEnter Number:")
-try:
-    howmanyi=int(howmany)
-except ValueError:
-    exit(0)
+    if howmanyi<0 or howmanyi>52:
+        print("invalid number")
+        exit(0)
 
-if howmanyi<0 or howmanyi>52:
-    print("invalid number")
-    exit(0)
-
-for x in range(howmanyi):
-    card=deck.pop()
-    print(card," Worth:",card.get_value())
+    for x in range(howmanyi):
+        card=deck.pop()
+        print(card," Worth:",card.get_value())

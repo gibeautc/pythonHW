@@ -12,7 +12,6 @@ import hashlib
 
 def GetHash(input):
     m = hashlib.sha256(input.encode())
-    
     return m.hexdigest()
 
 
@@ -24,9 +23,9 @@ class BankAccount:
         self.username=username
         self.password=GetHash(password)
     def withdraw(self,ammount):
-        if not self.verfiy():
+        if not self.verify():
             return 
-        if self.balance>=ammount:
+        if self.balance<=ammount:
             print("Insufficient funds")
             return
         self.balance-=ammount
@@ -35,14 +34,16 @@ class BankAccount:
             return
         self.balance+=ammount
     def account_info(self):
+        print("_________________________")
         print("Account for ",self.username)
         print("Hashed Password:",self.password)
         print("Account Balance:",self.balance)
+        print("_________________________")
     def verify(self):
-        name=input("Enter Username:")
-        if name != self.username:
-            print("Incorrect name")
-            return False
+        # name=input("Enter Username:")
+        # if name != self.username:
+        #     print("Incorrect name")
+        #     return False
         pw=input("enter password:")
         if self.password!=GetHash(pw):
             print("Incorrect Password")
@@ -50,11 +51,16 @@ class BankAccount:
         return True
         
 
-account=BankAccount("chad","password")
-account.account_info()
+if __name__=="__main__":
 
-account.deposit(100)
-account.account_info()
+    account=BankAccount("chad","password")
+    account.account_info()
+
+    account.deposit(100)
+    account.account_info()
+    account.withdraw(200)
+    account.withdraw(50)
+    account.account_info()
 
 
 
