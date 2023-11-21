@@ -49,13 +49,13 @@ class PlayingCard:
         return self.get_rank()
     def __str__ (self):
         ret=""
-        if self.get_rank()==1:
+        if self.rank==1:
             ret="Ace"
-        elif self.get_rank()==11:
+        elif self.rank==11:
             ret="Jack"
-        elif self.get_rank()==12:
+        elif self.rank==12:
             ret="Queen"
-        elif self.get_rank()==13:
+        elif self.rank==13:
             ret="King"
         else:
             ret=str(self.get_rank())
