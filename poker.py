@@ -21,6 +21,27 @@
 
 import random
 
+
+class CardDeck:
+    deck=[]
+    def __init__(self):
+         
+        for r in range(1,14):
+            for s in ['c','h','d','s']:
+                card=PlayingCard(r,s)
+                self.deck.append(card)
+        print("Deck Built, size:",len(self.deck))
+        #good card players know 7 shuffles are required for a deck to be 'random'
+        for r in range(7):
+            random.shuffle(self.deck)
+
+        print("Deck is shuffled!")
+    def GetCard(self):
+        if len(self.deck)>0:
+            return self.deck.pop()
+        return
+        
+
 class PlayingCard:
     rank=0
     suit=""
@@ -65,17 +86,7 @@ class PlayingCard:
 
 
 if __name__=="__main__":
-    deck=[]
-    for r in range(1,14):
-        for s in ['c','h','d','s']:
-            card=PlayingCard(r,s)
-            deck.append(card)
-    print("Deck Built, size:",len(deck))
-    #good card players know 7 shuffles are required for a deck to be 'random'
-    for r in range(7):
-        random.shuffle(deck)
-
-    print("Deck is shuffled!")
+    deck=CardDeck()
 
     howmany=input("How many cards would you like?(non number to exit)\nEnter Number:")
     try:
@@ -83,10 +94,13 @@ if __name__=="__main__":
     except ValueError:
         exit(0)
 
-    if howmanyi<0 or howmanyi>52:
+    if howmanyi<0:
         print("invalid number")
         exit(0)
 
     for x in range(howmanyi):
-        card=deck.pop()
-        print(card," Worth:",card.get_value())
+        card=deck.GetCard()
+        if card is not None:
+            print(card," Worth:",card.get_value())
+        else:
+            print("No card availible from deck")
